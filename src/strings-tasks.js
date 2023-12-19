@@ -289,7 +289,7 @@ function reverseString(str) {
  *   orderAlphabetically('abc123xyz') => '123abcxyz'
  */
 function orderAlphabetically(str) {
-  return str;
+  return String(str.split('').sort().join(''));
 }
 
 /**
@@ -305,7 +305,7 @@ function orderAlphabetically(str) {
  *   containsSubstring('12345', '34') => true
  */
 function containsSubstring(str, substring) {
-  return str + substring;
+  return str.indexOf(substring) !== -1;
 }
 
 /**
@@ -323,7 +323,9 @@ function containsSubstring(str, substring) {
  *   countVowels('XYZ') => 1
  */
 function countVowels(str) {
-  return str;
+  return str.match(/[aeiouyAEOUY]/g) === null
+    ? 0
+    : str.match(/[aeiouyAEOUY]/g).length;
 }
 
 /**
