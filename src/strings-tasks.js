@@ -155,7 +155,10 @@ function repeatString(str, times) {
  *   removeFirstOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
 function removeFirstOccurrences(str, times) {
-  return str.replace(times, '');
+  return str.indexOf(times) !== -1
+    ? str.slice(0, str.indexOf(times)) +
+        str.slice(str.indexOf(times) + times.length)
+    : str;
 }
 
 /**
@@ -246,16 +249,10 @@ function endsWith(str, substr) {
  *   formatTime(0, 0) => "00:00"
  */
 function formatTime(minutes, seconds) {
-  if (minutes < 10 && seconds > 10) {
-    return `${`0${minutes}`}:${seconds}`;
+  function time(x) {
+    return String(x).padStart(2, '0');
   }
-  if (minutes > 10 && seconds < 10) {
-    return `${minutes}:${`0${seconds}`}`;
-  }
-  if (minutes < 10 && seconds < 10) {
-    return `${`0${minutes}`}:${`0${seconds}`}`;
-  }
-  return `${minutes}:${seconds}`;
+  return `${time(minutes)}:${time(seconds)}`;
 }
 
 /**
